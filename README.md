@@ -4,9 +4,10 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 ![Papers](https://img.shields.io/badge/papers-23-b31b1b)
-![Year](https://img.shields.io/badge/year-2026-blue)
+![Field Reports](https://img.shields.io/badge/field%20reports-2-orange)
+![Year](https://img.shields.io/badge/year-2025--2026-blue)
 
-All papers are from [arXiv](https://arxiv.org) and published in 2026. The source list is [VoltAgent/awesome-ai-agent-papers](https://github.com/VoltAgent/awesome-ai-agent-papers). This list filters and ranks specifically for **autonomous offensive agent builders**.
+Papers are sourced from [arXiv](https://arxiv.org) via [VoltAgent/awesome-ai-agent-papers](https://github.com/VoltAgent/awesome-ai-agent-papers) and filtered for offensive agent builders. Field reports are practitioner write-ups from people who shipped real hacking bots.
 
 ---
 
@@ -19,6 +20,7 @@ All papers are from [arXiv](https://arxiv.org) and published in 2026. The source
 | **T3** | Memory & Knowledge Retention | How does my bot remember what it learned and reuse it? |
 | **T4** | Tool Use & Execution | How does my bot run commands, write scripts, and take real-world actions? |
 | **Bonus** | Know What You're Up Against | What can frontier models realistically do, and what defenses will I face? |
+| **FR** | Field Report | How did people who actually shipped a hacking bot build it? |
 
 See [CLAUDE.md](./CLAUDE.md) for detailed criteria on what belongs in each tier.
 
@@ -63,6 +65,17 @@ Week 5  →  T4 + Bonus       (tool use + model selection)
 | **[Internal Safety Collapse in Frontier Large Language Models](https://arxiv.org/pdf/2603.23509)** | Bonus | Reveals that AI agents produce exploits and dangerous data as a side effect of normal professional tasks — no adversarial prompting needed. Tests 8+ frontier models across 56 cross-domain scenarios. Tells you which backbone model your bot can use without needing to spend effort on jailbreaks. | [2603.23509](https://arxiv.org/abs/2603.23509) |
 | **[Learning to Inject: Automated Prompt Injection via Reinforcement Learning](https://arxiv.org/pdf/2602.05746v1)** | Bonus | Uses RL to auto-generate prompt injection attacks that transfer across multiple frontier LLM models. Attacks are discovered without white-box access and generalize to unseen models. Essential if your bot targets LLM-integrated applications — this is the attack technique it needs. | [2602.05746](https://arxiv.org/abs/2602.05746) |
 | **[Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale](https://arxiv.org/pdf/2601.10338v1)** | Bonus | Analyzes 42,447 agent skills from two major marketplaces, mapping the attack surface across prompt injection, data exfiltration, privilege escalation, and supply chain risks. Shows how real-world agent deployments fail, with prevalence data across vulnerability classes. Tells you where to aim your bot for maximum impact in the wild. | [2601.10338](https://arxiv.org/abs/2601.10338) |
+
+---
+
+## Field Reports
+
+Practitioner write-ups from people who built and shipped real hacking bots. Unlike academic papers, these report on what actually broke in production, what tooling decisions worked, and what the agent loop looks like when it runs against real targets.
+
+| Post | Tier | Description | Source |
+|---|:---:|---|:---:|
+| **[How the Hacking Agents Work](https://s1r1us.ninja/posts/how-hacker-sub-agent-works/)** — s1r1us (Hacktron.ai) | FR | Frames vulnerability discovery as **adversarial theorem proving** using the Curry-Howard correspondence: an exploit is a proof that an unintended program state is reachable. Proposes two discovery modes — *variant analysis* (proving known bug classes exist in new code, ~60–70% of web vulns) and *novel research* (generating new propositions from deep system understanding). The key architectural insight: top-tier hackers never load full codebases into working memory; they build compressed **abstract representations** (control-flow skeletons) and reason over those. Maps directly to agent design: an Understanding Agent builds the abstraction, a Reasoning Agent simulates what breaks it. | [s1r1us.ninja](https://s1r1us.ninja/posts/how-hacker-sub-agent-works/) |
+| **[Building Effective LLM Agents \| AI Cyber Challenge](https://theori.io/blog/building-effective-llm-agents-63446)** — Xint, Theori (3rd place, DARPA AIxCC) | FR | Four battle-tested patterns from building RoboDuck, the CRS that placed 3rd at DARPA's AI Cyber Challenge: (1) **decompose tasks into sub-agents** so each agent gets only its own context — the sub-agent call doubles as context compression; (2) **curate custom tools** instead of raw bash — e.g., `read_definition`, `find_references` backed by clang AST/joern, with hard limits to prevent context floods; (3) **structure outputs with XML tags or a `terminate` tool** and include decoy fields that force the model to reason about trigger conditions (reduces false positives); (4) **adapt prompting to each model** — `<rule>` blocks for Claude, forced `tool_choice=required` for o4-mini. Open-source CRS at [theori-io/aixcc-afc-archive](https://github.com/theori-io/aixcc-afc-archive). | [theori.io](https://theori.io/blog/building-effective-llm-agents-63446) |
 
 ---
 

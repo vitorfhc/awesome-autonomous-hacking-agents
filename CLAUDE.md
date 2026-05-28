@@ -120,16 +120,49 @@ There are four tiers plus one bonus category. Each tier answers a different ques
 
 ---
 
+---
+
+### Field Reports (FR)
+
+**The question this category answers:** "How did someone who actually shipped a working hacking bot build it — what broke, what worked, what would they do differently?"
+
+**What belongs here:**
+- Blog posts, write-ups, or post-mortems from teams that built and deployed a real autonomous hacking or security automation system
+- Competition write-ups where the team shipped a working Cyber Reasoning System (e.g., DARPA AIxCC, DEF CON CTF) with substantive architectural detail
+- Posts that describe actual agent design decisions with enough specificity to be actionable: specific tool schemas, agent role definitions, prompting strategies, failure modes encountered
+- Posts where the author derived architectural insights from building the system — not from reading papers or theorizing
+
+**What does NOT belong here:**
+- Tutorial posts ("how to use LangChain for security") with no original system behind them
+- Marketing posts for commercial security products that don't expose implementation details
+- Opinion pieces or predictions about what AI could do for security
+- Posts that describe a demo or toy system, not a system run against real targets or real competition benchmarks
+
+**How to write the entry:** Three things must appear in the description — (1) what the system was actually run against (CTF challenges, real CVEs, a competition CRS, a production codebase), (2) the specific architectural insight or design pattern that makes it worth reading, and (3) a concrete artifact the reader can inspect or copy (code, schema, tool definition, prompt structure).
+
+**Bar:** If you could replace this post with "use LangChain and prompt-engineer your way through it" and lose nothing, it does not belong here. Field reports earn inclusion by reporting on decisions that can only be known by shipping the system.
+
+**Formatting note:** Field reports use the `FR` tier badge and live in their own table under the `## Field Reports` section, separate from the academic papers table. The source column should link to the original post, not an arXiv ID.
+
+---
+
 ## Inclusion Checklist
 
-Before adding any paper, answer YES to all of the following:
+**For academic papers (T1–T4, Bonus):** Answer YES to all of the following.
 
 1. **Relevance:** Does this paper directly help someone building an autonomous agent that performs security/hacking tasks?
 2. **Agentic:** Is there an autonomous loop — an agent that takes actions, observes results, and iterates — rather than a single-shot LLM call?
 3. **Non-trivial:** Does this paper contribute something architecturally or empirically new, not just restate known results?
-4. **Tier fit:** Does it clearly fit into one of the four tiers (or the bonus category) based on the definitions above?
+4. **Tier fit:** Does it clearly fit into one of the four tiers (or the Bonus category) based on the definitions above?
 
-If you answer NO to any of these, do not add the paper.
+**For field reports (FR):** Answer YES to all of the following.
+
+1. **Shipped:** Was this system run against real targets, real competition benchmarks, or a real production codebase — not a demo or a thought experiment?
+2. **Specific:** Does the post expose concrete implementation detail (tool schemas, agent role definitions, failure modes, prompt structures) that a builder can act on?
+3. **Original:** Did the author derive the insight from building the system, not from reading papers or theorizing?
+4. **Non-marketing:** Is the post written to share knowledge, not to sell a product?
+
+If you answer NO to any item in the relevant checklist, do not add the entry.
 
 ---
 
