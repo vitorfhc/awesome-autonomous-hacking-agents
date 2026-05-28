@@ -142,7 +142,7 @@ There are four tiers plus one bonus category. Each tier answers a different ques
 
 **Bar:** If you could replace this post with "use LangChain and prompt-engineer your way through it" and lose nothing, it does not belong here. Field reports earn inclusion by reporting on decisions that can only be known by shipping the system.
 
-**Formatting note:** Field reports use the `FR` tier badge and live in their own table under the `## Field Reports` section, separate from the academic papers table. The source column should link to the original post, not an arXiv ID.
+**Formatting note:** Field reports live in their own table under `## Field Reports`, separate from the papers tables. Use the same ⭐ scoring column as papers. The source column links to the original post, not an arXiv ID. All field reports that pass the inclusion checklist tend to score ⭐⭐⭐ (Q1, Q2, Q4, Q5 = Y by definition of the FR bar; Q3 = Y if open source).
 
 ---
 
@@ -166,24 +166,61 @@ If you answer NO to any item in the relevant checklist, do not add the entry.
 
 ---
 
+## How to Score Each Entry
+
+Every entry gets a ⭐ rating computed from 5 binary (Y/N) questions. Answer each question for the paper, sum the Y's, then apply the rules below.
+
+### The 5 questions
+
+| ID | Question |
+|----|----------|
+| Q1 | Does it give a concrete architecture you can implement? |
+| Q2 | Was the system tested on real or realistic targets (not toy/CTF-only)? |
+| Q3 | Is there open-source code or a runnable artifact? |
+| Q4 | Does it cover a concept no other paper in the list addresses? |
+| Q5 | Is it useful before you have a working agent (blank-slate applicable)? |
+
+**Q1 guidance:** A paper that only surveys, theorizes, or benchmarks without describing a buildable system scores N. A paper that gives you role definitions, loop structures, memory schemas, or tool patterns scores Y.
+
+**Q2 guidance:** HackTheBox, GOAD Active Directory, Metasploitable, real CVEs on live systems, and DARPA AIxCC repositories = Y. Synthetic CTF-only benchmarks (PicoCTF, OverTheWire) or toy environments = N.
+
+**Q5 guidance:** If the paper's value assumes you already have a running agent (e.g., it improves memory reuse, fine-tunes a model, or diagnoses agent failures), score N. If you could use its architecture to design your first agent from scratch, score Y.
+
+### Aggregation rules
+
+1. **Q1 = N** → capped at ⭐⭐ regardless of other scores (no theoretical-only paper can be ⭐⭐⭐)
+2. **Q1 = Y AND total Y count ≥ 3** → ⭐⭐⭐
+3. **Q1 = Y AND total Y count = 1–2** → ⭐⭐
+4. **Total Y count = 0** → ⭐
+
+### Star meanings
+
+| Stars | Read when |
+|-------|-----------|
+| ⭐⭐⭐ | Before you write your first agent |
+| ⭐⭐ | After you have a working prototype |
+| ⭐ | When you hit the specific problem it solves |
+
+---
+
 ## How to Format Each Entry
 
-Each row in the README table uses this format:
+Papers go in the per-category table under the matching numbered section. Each row uses this format:
 
 ```
-| **[Paper Title](arxiv_pdf_url)** | Tier | One-sentence capability claim. One-sentence architecture note. One-sentence "why it matters for your bot." | [arXiv:XXXX.XXXXX](arxiv_abs_url) |
+| **[Paper Title](arxiv_pdf_url)** | ⭐⭐⭐ | One-sentence capability claim. One-sentence architecture note. One-sentence "why it matters for your bot." | [XXXX.XXXXX](arxiv_abs_url) |
 ```
 
 **Title:** Use the exact paper title. Link to the PDF.
 
-**Tier:** Write the tier number as `T1`, `T2`, `T3`, `T4`, or `Bonus`.
+**Stars:** Apply the scoring rubric above before adding the entry.
 
 **Description (3 sentences max):**
 - Sentence 1: What the system *does* (its capability, stated as an action)
 - Sentence 2: How it works (the key architectural idea, in plain terms)
 - Sentence 3: Why a hacking bot builder should care (what problem it solves for them)
 
-**arXiv link:** Link to the abstract page (not the PDF), using the format `arXiv:XXXX.XXXXX`.
+**arXiv link:** Link to the abstract page (not the PDF).
 
 ---
 
