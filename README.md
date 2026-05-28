@@ -7,8 +7,6 @@
 ![Field Reports](https://img.shields.io/badge/field%20reports-2-orange)
 ![Year](https://img.shields.io/badge/year-2025--2026-blue)
 
-Papers are sourced from [arXiv](https://arxiv.org) via [VoltAgent/awesome-ai-agent-papers](https://github.com/VoltAgent/awesome-ai-agent-papers) and filtered for offensive agent builders. Field reports are practitioner write-ups from people who shipped real hacking bots.
-
 ---
 
 ## Tier System
